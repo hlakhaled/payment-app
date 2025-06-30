@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:payment_app/core/utils/functions/custom_buttom_sheet.dart';
 import 'package:payment_app/features/checkout_feature/presentation/views/widgets/custom_button.dart';
-
 import 'package:payment_app/features/checkout_feature/presentation/views/widgets/custom_order_details_rows.dart';
 import 'package:payment_app/features/checkout_feature/presentation/views/widgets/custom_total_text.dart';
+import 'package:payment_app/features/payment_details/presentation/views/widgets/payment_methods.dart';
 
 class CartBody extends StatelessWidget {
   const CartBody({super.key});
@@ -45,7 +45,11 @@ class CartBody extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          const CustomButton(),
+          CustomButton(
+              title: "Complete Payment",
+              onTap: () {
+                customButtomSheet(context);
+              }),
           const SizedBox(
             height: 30,
           ),

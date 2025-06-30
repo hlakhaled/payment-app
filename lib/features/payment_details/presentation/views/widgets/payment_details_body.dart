@@ -15,7 +15,7 @@ class PaymentDetailsBody extends StatelessWidget {
             height: 14,
           ),
           PaymentMethods(),
-          CustomCreditCard()
+          const CustomCreditCard()
         ],
       ),
     );
