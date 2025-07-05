@@ -3,7 +3,9 @@ import 'package:payment_app/core/utils/styles.dart';
 
 class CustomRow extends StatelessWidget {
   const CustomRow({
-    super.key, required this.title, required this.desc,
+    super.key,
+    required this.title,
+    required this.desc,
   });
   final String title;
   final String desc;

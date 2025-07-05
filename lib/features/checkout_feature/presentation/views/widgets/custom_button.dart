@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:payment_app/core/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onTap,required this.title});
+  const CustomButton(
+      {super.key,
+      required this.onTap,
+      required this.title,
+      this.isLoading = false});
+  final bool isLoading;
   final void Function() onTap;
   final String title;
   @override
@@ -19,10 +24,12 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Text(
-            title,
-            style: Styles().style22,
-          ),
+          child: isLoading
+              ? const CircularProgressIndicator()
+              : Text(
+                  title,
+                  style: Styles().style22,
+                ),
         ),
       ),
     );

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:payment_app/core/utils/functions/custom_buttom_sheet.dart';
+import 'package:payment_app/core/utils/functions/bottom_sheet_body.dart';
+import 'package:payment_app/features/checkout_feature/data/repos/check_out_repo_impl.dart';
+import 'package:payment_app/features/checkout_feature/presentation/views/manager/payment/payment_cubit.dart';
+import 'package:payment_app/features/checkout_feature/presentation/views/widgets/bottom_sheet_consimer.dart';
 import 'package:payment_app/features/checkout_feature/presentation/views/widgets/custom_button.dart';
 import 'package:payment_app/features/checkout_feature/presentation/views/widgets/custom_order_details_rows.dart';
 import 'package:payment_app/features/checkout_feature/presentation/views/widgets/custom_total_text.dart';
-import 'package:payment_app/features/payment_details/presentation/views/widgets/payment_methods.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartBody extends StatelessWidget {
   const CartBody({super.key});
@@ -45,11 +48,26 @@ class CartBody extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          CustomButton(
-              title: "Complete Payment",
-              onTap: () {
-                customButtomSheet(context);
-              }),
+          BlocProvider<PaymentCubit>(
+            create: (context) => PaymentCubit(checkOutRepo: CheckOutRepoImpl()),
+            child: Builder(builder: (context) {
+              return CustomButton(
+                title: "Complete Payment",
+                onTap: () {
+                  final paymentCubit = context.read<PaymentCubit>();
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return BlocProvider.value(
+                        value: paymentCubit,
+                        child: const BottomSheetConsimer(),
+                      );
+                    },
+                  );
+                },
+              );
+            }),
+          ),
           const SizedBox(
             height: 30,
           ),
