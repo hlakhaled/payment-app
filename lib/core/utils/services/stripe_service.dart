@@ -59,8 +59,6 @@ class StripeService {
 
   Future makePayment(
       {required PaymentIntentInputModel paymentIntentInputModel}) async {
-
-        
     var createIntitPayment = await creatPaymentIntent(paymentIntentInputModel);
 
     var createphemeralKey =

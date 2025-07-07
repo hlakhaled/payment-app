@@ -22,7 +22,6 @@ class EphemeralKeyModel {
   factory EphemeralKeyModel.fromJson(Map<String, dynamic> json) {
     return EphemeralKeyModel(
       id: json['id'] as String?,
-
       created: json['created'] as int?,
       expires: json['expires'] as int?,
       livemode: json['livemode'] as bool?,
